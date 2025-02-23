@@ -4,7 +4,7 @@ env:
     useremails: "ENCRYPTED[!047bd9cc5bd11c7d5362caf6f1f5942b24d393a0490c96e39cf6c60052150ded771f9bcef34f103f504d67e9b8a495af!]"
 
 task:
-  name: "Manifest Tester"
+  name: "Krnulls build"
   timeout_in: 480m
   container:
       image: inok2341/anu:latest
@@ -19,14 +19,8 @@ task:
        - echo "$credentials" > ~/.git-credentials
 
   Test-Sync_script:
-      - mkdir -p ~/rom
-      - cd ~/rom
-      - sudo curl --create-dirs -L -o /usr/local/bin/repoo -O -L https://storage.googleapis.com/git-repo-downloads/repo
-      - sudo chmod a+rx /usr/local/bin/repoo
-      - sudo apt update;sudo apt install git-lfs git
-      - git-lfs install
-      - rm -rf .repo/local_manifests
-      - repo init --depth=1 -u https://github.com/NusantaraProject-ROM/android_manifest.git -b 10
-      - git clone https://github.com/$usernames/local_manifests .repo/local_manifests
-      - repo sync -c -j$(nproc --all) --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune
-      - ls device
+      - mkdir -p ~/workspaces
+      - cd ~/workspaces
+      - git clone --depth=1 https://github.com/$usernames/kernel_realme_RMX2185 krnulls
+      - cd krnulls
+      - bash build
