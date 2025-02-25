@@ -21,6 +21,5 @@ task:
   Test-Sync_script:
       - mkdir -p ~/workspaces
       - cd ~/workspaces
-      - git clone --depth=1 https://github.com/$usernames/kernel_realme_RMX2185 krnulls
-      - cd krnulls
-      - bash build
+      - git clone --depth=1 https://github.com/$usernames/kernel_realme_RMX2185 krnullsh && cd krnullsh
+      - bash krnullsh/build.sh
